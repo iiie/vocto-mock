@@ -1,0 +1,37 @@
+# Ansible Managed
+
+[Unit]
+Description=Voctomix startup commands
+
+Requires=videoteam-voctocore.service
+Wants=videoteam-voctocore.service
+# BindsTo=videoteam-voctocore.service
+PartOf=videoteam-voctocore.service
+
+After=videoteam-voctocore.service
+
+# ReloadPropagatedFrom=videoteam-voctocore.service
+# StopPropagatedFrom=videoteam-voctocore.service
+
+# OnSuccess=videoteam-voctocore.service
+
+# Upholds=videoteam-voctocore.service
+# Requisite=videoteam-voctocore.service
+# RequisiteOf=videoteam-voctocore.service
+
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+
+User=videoteam
+Group=videoteam
+
+#ExecStart=/home/videoteam/voctomix-outcasts/voctocore-cmds.py --delay 2.5 -f /etc/voctomix/vocto.cmds
+ExecStart=/opt/vocto-mock/mock-cmds.py
+Nice=10
+
+[Install]
+WantedBy=default.target
+# WantedBy=multi-user.target
+# UpheldBy=videoteam-voctocore.service
